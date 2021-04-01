@@ -1,17 +1,17 @@
-export default (sequelize, DataTypes) => {
-  const DietaryRestrictions = sequelize.define(
-    'Dietary_Restrictions',
+export default (database, DataTypes) => {
+  const genre = database.define(
+    'genre',
     {
-      restriction_id: {
+      genre_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
       },
-      restriction_type: {
+      genre_name: {
         type: DataTypes.STRING
       }
     },
     { freezeTableName: true, timestamps: false }
   );
-  return DietaryRestrictions;
+  return genre;
 };

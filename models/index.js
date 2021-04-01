@@ -1,11 +1,7 @@
-import DietaryRestrictions from './DietaryRestrictions.js';
-import DiningHall from './DiningHall.js';
-import Macros from './Macros.js';
-import Meals from './Meals.js';
+import Games from './games.js';
+import Genres from './genre.js';
 
 export default {
-  DietaryRestrictions,
-  DiningHall,
-  Macros,
-  Meals
+  Games,
+  Genres,
 };
