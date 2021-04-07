@@ -1,7 +1,7 @@
 import express from 'express';
 import sequelize from 'sequelize';
 
-import db from './database/initializeDB';
+import db from './database/initializeDB.js';
 
 const router = express.Router();
 
@@ -209,3 +209,5 @@ router.put('/meals', async (req, res) => {
     res.error('Server error');
   }
 });
+
+export default router;

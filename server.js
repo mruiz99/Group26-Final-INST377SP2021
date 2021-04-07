@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import express from 'express';
 import db from './database/initializeDB.js';
-import apiRoutes from 'routes.js';
+import routes from './routes.js';
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(staticFolder));
 
-app.use('/api', apiRoutes);
+app.use('/api', routes);
 
 async function bootServer() {
   try {
