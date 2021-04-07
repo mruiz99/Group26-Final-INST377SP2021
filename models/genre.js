@@ -1,6 +1,6 @@
 export default (database, DataTypes) => {
   const genres = database.define(
-    'genres',
+    'genre',
     {
       genre_id: {
         type: DataTypes.INTEGER,
@@ -14,5 +14,5 @@ export default (database, DataTypes) => {
     },
     { freezeTableName: true, timestamps: false }
   );
-  return genre;
+  return genres;
 };

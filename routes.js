@@ -1,6 +1,5 @@
 import express from 'express';
 import sequelize from 'sequelize';
-
 import db from './database/initializeDB.js';
 
 const router = express.Router();
@@ -23,18 +22,61 @@ router.route('/games')
       res.error('Server error');
     }
   }) 
-  .post(async (req, res) => {
+  .delete(async (req, res) => {
+    try {
+      await db.games.destroy({
+        where: {
+          game_name: req.params.game_name
+        }
+      });
+      res.send('Successfully Deleted');
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
 
-  })
-  .put(async (req,res) => {
-
-});
-
+/// /////////////////////////////////
+/// ////Genres Endpoints////////
+/// /////////////////////////////////
 router.route('/genres')
   .get(async (req, res) =>  {
     try {
-      const genres = await db.genres.findAll();
-      const reply = genres.length > 0 ? { data: genres } : { message: 'no results found' };
+      const genre = await db.genres.findAll();
+      const reply = genre.length > 0 ? { data: genre } : { message: 'no results found' };
+      res.json(reply);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
+
+  /// /////////////////////////////////
+/// ////Genre ID Endpoint////////
+/// /////////////////////////////////
+router.route('/genres/:genre_id')
+  .get(async (req, res) =>  {
+    try {
+      const genres = await db.genres.findAll({
+        where: {
+          genre_id: req.params.genre_id  // to test, add = 1
+        }
+      });
+      res.json(genres);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
+
+/// /////////////////////////////////
+/// ////Platform Endpoints////////
+/// /////////////////////////////////
+router.route('/platform')
+  .get(async (req, res) =>  {
+    try {
+      const platform = await db.platform.findAll();
+      const reply = platform.length > 0 ? { data: platform } : { message: 'no results found' };
       res.json(reply);
     } catch (err) {
       console.error(err);
@@ -42,179 +84,66 @@ router.route('/genres')
     }
   }) 
   .post(async (req, res) => {
+    const platform = await db.platform.findAll();
+    const currentId = (await platform.length)+1;
+    try {
+      const newPlatform = await db.platform.create({
+        platform_id: currentId,
+        platform_name: req.body.platform_name
+      });
+      res.json(newPlatform);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+});
 
-  })
-  .put(async (req,res) => {
-
-})
-
-router.route('/platform')
-  .get(async (req, res) =>  {
-  
-  }) 
-  .post(async (req, res) => {
-
-  })
-  .put(async (req,res) => {
-
-})
-
+/// /////////////////////////////////
+/// ////Developer Endpoints////////
+/// /////////////////////////////////
 router.route('/developers')
   .get(async (req, res) =>  {
-  
+    try {
+      const developer = await db.developers.findAll();
+      const reply = developer.length > 0 ? { data: developer } : { message: 'no results found' };
+      res.json(reply);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
   }) 
-  .post(async (req, res) => {
-
-  })
   .put(async (req,res) => {
+    try {
+      await db.developers.update(
+        {
+          developer_name: req.body.developer_name
+        },
+        {
+          where: {
+            developer_team_id: req.body.developer_team_id
+          }
+        }
+      );
+      res.send('Successfully Updated');
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+});
 
-})
-
+/// /////////////////////////////////
+/// ////Publisher Endpoints////////
+/// /////////////////////////////////
 router.route('/publishers')
   .get(async (req, res) =>  {
-  
-  }) 
-  .post(async (req, res) => {
-
-  })
-  .put(async (req,res) => {
-
-})
-
-router.route('/ratings')
-  .get(async (req, res) =>  {
-  
-  }) 
-  .post(async (req, res) => {
-
-  })
-  .put(async (req,res) => {
-
-})
-
-router.get('/games', async (req, res) => {
-  try {
-    const halls = await db.DiningHall.findAll();
-    const reply = halls.length > 0 ? { data: halls } : { message: 'no results found' };
-    res.json(reply);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.get('/dining/:hall_id', async (req, res) => {
-  try {
-    const hall = await db.DiningHall.findAll({
-      where: {
-        hall_id: req.params.hall_id
-      }
-    });
-
-    res.json(hall);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.post('/dining', async (req, res) => {
-  const halls = await db.DiningHall.findAll();
-  const currentId = (await halls.length) + 1;
-  try {
-    const newDining = await db.DiningHall.create({
-      hall_id: currentId,
-      hall_name: req.body.hall_name,
-      hall_address: req.body.hall_address,
-      hall_lat: req.body.hall_lat,
-      hall_long: req.body.hall_long
-    });
-    res.json(newDining);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.delete('/dining/:hall_id', async (req, res) => {
-  try {
-    await db.DiningHall.destroy({
-      where: {
-        hall_id: req.params.hall_id
-      }
-    });
-    res.send('Successfully Deleted');
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.put('/dining', async (req, res) => {
-  try {
-    await db.DiningHall.update(
-      {
-        hall_name: req.body.hall_name,
-        hall_location: req.body.hall_location
-      },
-      {
-        where: {
-          hall_id: req.body.hall_id
-        }
-      }
-    );
-    res.send('Successfully Updated');
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-/// /////////////////////////////////
-/// ////////Meals Endpoints//////////
-/// /////////////////////////////////
-router.get('/meals', async (req, res) => {
-  try {
-    const meals = await db.Meals.findAll();
-    res.json(meals);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.get('/meals/:meal_id', async (req, res) => {
-  try {
-    const meals = await db.Meals.findAll({
-      where: {
-        meal_id: req.params.meal_id
-      }
-    });
-    res.json(meals);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.put('/meals', async (req, res) => {
-  try {
-    await db.Meals.update(
-      {
-        meal_name: req.body.meal_name,
-        meal_category: req.body.meal_category
-      },
-      {
-        where: {
-          meal_id: req.body.meal_id
-        }
-      }
-    );
-    res.send('Meal Successfully Updated');
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
+    try {
+      const publisher = await db.publishers.findAll();
+      const reply = publisher.length > 0 ? { data: publisher } : { message: 'no results found' };
+      res.json(reply);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
 
 export default router;
