@@ -12,6 +12,79 @@ router.get('/', (req, res) => {
 /// /////////////////////////////////
 /// ////Games Endpoints////////
 /// /////////////////////////////////
+router.route('/games')
+  .get(async (req, res) =>  {
+    try {
+      const games = await db.Games.findAll();
+      const reply = games.length > 0 ? { data: games } : { message: 'no results found' };
+      res.json(reply);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  }) 
+  .post(async (req, res) => {
+
+  })
+  .put(async (req,res) => {
+
+});
+
+router.route('/genre')
+  .get(async (req, res) =>  {
+  
+  }) 
+  .post(async (req, res) => {
+
+  })
+  .put(async (req,res) => {
+
+})
+
+router.route('/platform')
+  .get(async (req, res) =>  {
+  
+  }) 
+  .post(async (req, res) => {
+
+  })
+  .put(async (req,res) => {
+
+})
+
+router.route('/developers')
+  .get(async (req, res) =>  {
+  
+  }) 
+  .post(async (req, res) => {
+
+  })
+  .put(async (req,res) => {
+
+})
+
+router.route('/publishers')
+  .get(async (req, res) =>  {
+  
+  }) 
+  .post(async (req, res) => {
+
+  })
+  .put(async (req,res) => {
+
+})
+
+router.route('/ratings')
+  .get(async (req, res) =>  {
+  
+  }) 
+  .post(async (req, res) => {
+
+  })
+  .put(async (req,res) => {
+
+})
+
 router.get('/games', async (req, res) => {
   try {
     const halls = await db.DiningHall.findAll();
