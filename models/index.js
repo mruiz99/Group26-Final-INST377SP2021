@@ -1,15 +1,13 @@
-import Games from './games.js';
-import Genres from './genre.js';
-import Developers from './developers.js';
-import Platform from './platform.js';
-import Publishers from './publishers.js';
-import Ratings from './ratings.js';
+import games from './games.js';
+import genres from './genre.js';
+import developers from './developers.js';
+import platform from './platform.js';
+import publishers from './publishers.js';
 
 export default {
-  Games,
-  Genres,
-  Developers,
-  Platform,
-  Publishers,
-  Ratings
+  games,
+  genres,
+  developers,
+  platform,
+  publishers
 };

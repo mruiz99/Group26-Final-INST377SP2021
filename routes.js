@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 router.route('/games')
   .get(async (req, res) =>  {
     try {
-      const games = await db.Games.findAll();
+      const games = await db.games.findAll();
       const reply = games.length > 0 ? { data: games } : { message: 'no results found' };
       res.json(reply);
     } catch (err) {
@@ -30,9 +30,16 @@ router.route('/games')
 
 });
 
-router.route('/genre')
+router.route('/genres')
   .get(async (req, res) =>  {
-  
+    try {
+      const genres = await db.genres.findAll();
+      const reply = genres.length > 0 ? { data: genres } : { message: 'no results found' };
+      res.json(reply);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
   }) 
   .post(async (req, res) => {
 

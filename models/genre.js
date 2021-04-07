@@ -1,6 +1,6 @@
 export default (database, DataTypes) => {
   const genre = database.define(
-    'Genre',
+    'genre',
     {
       genre_id: {
         type: DataTypes.INTEGER,
