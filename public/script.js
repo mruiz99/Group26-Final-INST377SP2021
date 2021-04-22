@@ -18,7 +18,7 @@ async function getGenre() {
   return data;
 }
 
-async function getDecades() {
+async function seriesChart() {
   const eighties = await fetch('/api/eighties');
   const eightiesData = await eighties.json();
   const nineties = await fetch('/api/nineties');
@@ -28,16 +28,13 @@ async function getDecades() {
   const twoten = await fetch('/api/twoten');
   const twotenData = await twoten.json();
   
-  const data = [];
-  data.push(eightiesData);
-  data.push(ninetiesData);
-  data.push(twothouData);
-  data.push(twotenData);
-  console.log(data);
-  return data;
-}
+  const info = [];
+  info.push(eightiesData);
+  info.push(ninetiesData);
+  info.push(twothouData);
+  info.push(twotenData);
 
-async function seriesChart(data) {
+  console.log(info[2]);
   const chart = new CanvasJS.Chart('chartContainer', {
     animationEnabled: true,
     title: {
@@ -58,48 +55,38 @@ async function seriesChart(data) {
       shared: true
     },
     data: [{
-      name: 'Myrtle Beach',
+      name: info[0][0]['genre_name'],
       type: 'spline',
-      yValueFormatString: '#0.## °C',
       showInLegend: true,
       dataPoints: [
-        { x: new Date(2017, 6, 24), y: 31 },
-        { x: new Date(2017, 6, 25), y: 31 },
-        { x: new Date(2017, 6, 26), y: 29 },
-        { x: new Date(2017, 6, 27), y: 29 },
-        { x: new Date(2017, 6, 28), y: 31 },
-        { x: new Date(2017, 6, 29), y: 30 },
-        { x: new Date(2017, 6, 30), y: 29 }
+        { x: new Date(1980,1,1), y: info[0][0]['global_sales'] },
+        { x: new Date(1990,1,1), y: info[1][4]['global_sales'] },
+        { x: new Date(2000,1,1), y: info[2][5]['global_sales'] },
+        { x: new Date(2010,1,1), y: info[3][9]['global_sales'] }
       ]
     },
     {
-      name: 'Martha Vineyard',
+      name: info[0][1]['genre_name'],
       type: 'spline',
-      yValueFormatString: '#0.## °C',
+      yValueFormatString: '#0.##',
       showInLegend: true,
       dataPoints: [
-        { x: new Date(2017, 6, 24), y: 20 },
-        { x: new Date(2017, 6, 25), y: 20 },
-        { x: new Date(2017, 6, 26), y: 25 },
-        { x: new Date(2017, 6, 27), y: 25 },
-        { x: new Date(2017, 6, 28), y: 25 },
-        { x: new Date(2017, 6, 29), y: 25 },
-        { x: new Date(2017, 6, 30), y: 25 }
+        { x: new Date(1980,1,1), y: info[0][1]['global_sales'] },
+        { x: new Date(1990,1,1), y: info[1][5]['global_sales'] },
+        { x: new Date(2000,1,1), y: info[2][6]['global_sales'] },
+        { x: new Date(2010,1,1), y: info[3][10]['global_sales'] }
       ]
     },
     {
-      name: 'Nantucket',
+      name: info[0][2]['genre_name'],
       type: 'spline',
-      yValueFormatString: '#0.## °C',
+      yValueFormatString: '#0.##',
       showInLegend: true,
       dataPoints: [
-        { x: new Date(2017, 6, 24), y: 22 },
-        { x: new Date(2017, 6, 25), y: 19 },
-        { x: new Date(2017, 6, 26), y: 23 },
-        { x: new Date(2017, 6, 27), y: 24 },
-        { x: new Date(2017, 6, 28), y: 24 },
-        { x: new Date(2017, 6, 29), y: 23 },
-        { x: new Date(2017, 6, 30), y: 23 }
+        { x: new Date(1980,1,1), y: info[0][2]['global_sales'] },
+        { x: new Date(1990,1,1), y: info[1][8]['global_sales'] },
+        { x: new Date(2000,1,1), y: info[2][9]['global_sales'] },
+        { x: new Date(2010,1,1), y: info[3][13]['global_sales'] }
       ]
     }]
   });
@@ -118,8 +105,8 @@ async function seriesChart(data) {
 async function windowOnload() {
   //getGenre();
   //getGames();
-  getDecades();
-  seriesChart(getDecades);
+  //getDecades();
+  seriesChart();
 }
 
 window.onload = windowOnload;
