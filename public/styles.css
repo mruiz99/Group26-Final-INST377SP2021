@@ -1,3 +1,8 @@
 .chartContainer {
     margin-top: 100px;
 }
+
+.container {
+    align-content: center;
+    justify-content: center;
+}
