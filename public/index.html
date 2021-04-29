@@ -5,7 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Global Statistics </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Cantarell|Oswald' rel='stylesheet' type='text/css'>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="nivo/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="prettyphoto/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+    <script type="text/javascript" src="nivo/jquery-1.6.1.min.js"></script>
+    <script src="prettyphoto/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+            //Set opacity on each span to 0%
+            $(".rollover").css({'opacity':'0'});
+            
+            $('#gallery a.item').hover(
+                function() {
+                    $(this).find('.rollover').stop().fadeTo(500, 1);
+                },
+                function() {
+                    $(this).find('.rollover').stop().fadeTo(500, 0);
+                }
+            )
+            });
+        </script>
     </head>
 
     <body>
@@ -38,14 +61,118 @@
 
         <h1>Group 26</h1>
 
-        <div class="chartContainer" id="chartContainer">
-            
-        </div>
-
-
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        <script src="script.js"></script>
         
+        <div id="container">
+          <div id="header">
+              <div id="header-1"><h1>header-1</h1></div>
+                <div id="header-2"><h2>Global Top Genres and Games from 80's to 10's</h2></div>
+            </div>   
+            <!---BEGIN Slider--->
+            <div class="slider-wrapper theme-default">
+                    <span id="slider-shadow"></span>
+                    <div id="slider" class="nivoSlider">
+                        <a href="#"><img src="images/slider/slider-img-1.jpg" alt="" title="#htmlcaption1" /></a>
+                        <a href="#"><img src="images/slider/slider-img-2.jpg" alt="" title="#htmlcaption2" /></a>
+                        <a href="#"><img src="images/slider/slider-img-3.jpg" alt="" title="#htmlcaption3" /></a>
+                        <a href="#"><img src="images/slider/slider-img-4.jpg" alt="" title="#htmlcaption4" /></a>
+                    </div>
+                    <div id="htmlcaption1" class="nivo-html-caption">
+                        <strong>80's top 1</strong> brief intro of 80's top1 game
+                    </div>
+                    <div id="htmlcaption2" class="nivo-html-caption">
+                        <strong>90's top 1</strong> brief intro of 90's top1 game
+                    </div>
+                    <div id="htmlcaption3" class="nivo-html-caption">
+                        <strong>00's top 1</strong> brief intro of 00's top1 game
+                    </div>
+                    <div id="htmlcaption4" class="nivo-html-caption">
+                        <strong>10's top 1</strong> brief intro of 10's top1 game
+                    </div>
+                </div>
+        
+                <div id="clients">
+                    <div id="title-divider"><h3>Navigation Bar</h3></div>
+                    <div id="client-container">
+                        <nav>
+                            <ul>
+                                <li><span>All</span></li>
+                                <li><a href="">80's</a></li>
+                                <li><a href="">90's</a></li>
+                                <li><a href="">00's</a></li>
+                                <li><a href="">10's</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!---BEGIN Portfolio Gallery--->
+                <div id="sub-container">
+                    <div id="about">
+                        <div id="title-divider"><h3>NA Sales</h3></div>
+                            <div>data visuilzation of NA sales</div>
+                        
+                    </div>
+                    <div id="contact">
+                    <div id="title-divider"><h3>JP Sales</h3></div>
+                        <div>data visuilzation of JP Sales</div>
+                    
+                </div>
+                </div>
+                
+                <!---BEGIN Client Gallery--->
+                <div><br></div>
+                <div id="gallery">
+                    <div id="title-divider"><h3>Statistics for all decades</h3></div>
+                        <div>data visuilzation of decades sales</div>
+                        <a href=""><img src="images/gallery/image-stat.jpg" alt="" title="" /></a>
+                    
+                </div>
+                
+                <div id="sub-container">
+                <!---BEGIN About Me--->
+                <div id="about">
+                    <div id="title-sub-divider"><h3>About this webpage</h3></div>
+                    
+                </div>
+                
+                <!---BEGIN Contact Form--->
+                <div id="contact">
+                <div id="title-sub-divider"><h3>Contact</h3></div>
+                  <form id="contact-form">
+                        <input type="text" name="name" id="name" value="Your Name" />
+                        <input type="text" name="email" id="email" value="Your Email Address" />
+                        <textarea id="comment"></textarea>
+                        <input type="submit" value="submit" id="submit" />
+                    </form>
+                </div>      
+                </div>
+        </div>
+                
+        <!---BEGIN Footer--->
+        <div id="footer">
+          <div id="footer-container">
+            </div>
+        </div>
+                
+        
+            <script type="text/javascript" src="nivo/jquery.nivo.slider.pack.js"></script>
+            <script type="text/javascript">
+            $(window).load(function() {
+                $('#slider').nivoSlider({
+              effect:'random', 
+                    slices:15,  
+                    animSpeed:500, 
+                    pauseTime:5000
+              });
+            });
+            </script>
+            
+            <script type="text/javascript" charset="utf-8">
+          $(document).ready(function(){
+            $("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal', theme:'dark_rounded', social_tools:false, slideshow:false, autoplay_slideshow: false});
+            $(".image a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal', theme:'dark_rounded', social_tools:false, slideshow:false, autoplay_slideshow: false});
+          });
+          </script>
 
     </body>
 </html>
