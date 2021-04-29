@@ -1,6 +1,6 @@
 /**** Reset ****/
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -28,6 +28,11 @@ body{
 }
 a{
 	color:#ff7800;
+}
+h1 {
+	font-family: 'Franklin Gothic Medium';
+	text-align: center;
+	font-size: 40px;
 }
 h3{
 	font-family: 'Oswald', sans-serif;
@@ -57,6 +62,8 @@ h3{
 #header{
 	width:inherit;
 	margin-top:40px;
+	margin-bottom: 20px;
+	color:#1b1b1b;
 }
 #header-logo{
 	background:url(images/header-logo.png) no-repeat left top;
@@ -131,7 +138,7 @@ h3{
 }
 #gallery #title-divider h3{
 	background-color:#FFF;
-	width:160px;
+	width:120px;
 }
 #gallery a.item{
 	position:relative;
@@ -165,7 +172,7 @@ h3{
 }
 #clients #title-divider h3{
 	background-color:#FFF;
-	width:130px;
+	width:170px;
 }
 #client-container{
 	padding:25px 20px;
@@ -193,6 +200,8 @@ h3{
 
 #sub-container{
 	margin:50px 0px 0px 25px;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 /**** Begin About Me***/
@@ -202,7 +211,7 @@ h3{
 }
 #about #title-sub-divider h3{
 	background-color:#FFF;
-	width:85px;
+	width:157px;
 }
 #about-col1{
 	width:140px;
@@ -411,4 +420,14 @@ nav ul {
 	text-decoration: none;
 	color: black;
   
+  }
+  .aboutParagraph {
+	  margin-top: 30px;
+  }
+  .nivo-html-caption {
+	  align-content: center;
+  }
+
+  .navbar-brand img{
+	  height: 100%;
   }
