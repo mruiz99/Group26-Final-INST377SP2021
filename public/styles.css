@@ -201,6 +201,7 @@ h3{
 #sub-container{
 	margin:50px 0px 0px 25px;
 	margin-right: 10px;
+ 	margin-bottom: 10px;
 }
 
 /**** Begin About Me***/
@@ -215,6 +216,19 @@ h3{
 #about-col1{
 	width:140px;
 	float:left;
+}
+.aboutParagraph {
+	margin-top: 30px;
+}
+.nivo-html-caption {
+	align-content: center;
+}
+
+.navbar-brand img{
+	height: 100%;
+}
+.na-sales-divider {
+	width: 200px;
 }
 #about-col1 ul li{
 	list-style:none;
@@ -391,6 +405,14 @@ h3{
 	padding:0px 40px;
 }
 
+#bins { 
+	padding-top: 40px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+	width: 65%;
+}
+
 nav {
 	height: 50px;
 	flex: 100%;
@@ -419,17 +441,4 @@ nav ul {
 	text-decoration: none;
 	color: black;
   
-  }
-  .aboutParagraph {
-	  margin-top: 30px;
-  }
-  .nivo-html-caption {
-	  align-content: center;
-  }
-
-  .navbar-brand img{
-	  height: 100%;
-  }
-  .na-sales-divider {
-	  width: 200px;
   }

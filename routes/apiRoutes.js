@@ -36,24 +36,10 @@ router.route('/games')
     }
   });
 
-  const eightiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1985 AND date_published < 1990 GROUP BY genre_name ORDER BY genre_name;'
   const ninetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY genre_name;'
   const twothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY genre_name;'
   const twoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY genre_name;'
   
-  router.route('/eighties')
-  .get(async (req, res) =>  {
-    try {
-      const eighties = await db.sequelizeDB.query(eightiesTotal, {
-        type: sequelize.QueryTypes.SELECT
-      });
-      res.json(eighties);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
-
   router.route('/nineties')
   .get(async (req, res) =>  {
     try {
@@ -93,24 +79,9 @@ router.route('/games')
     }
   });
 
-
-  const naEightiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1985 AND date_published < 1990 GROUP BY genre_name ORDER BY na_sales DESC;'
   const naNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY na_sales DESC;'
   const naTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY na_sales DESC;'
   const naTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY na_sales DESC;'
-  
-  router.route('/NAeighties')
-  .get(async (req, res) =>  {
-    try {
-      const eighties = await db.sequelizeDB.query(naEightiesTotal, {
-        type: sequelize.QueryTypes.SELECT
-      });
-      res.json(eighties);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
 
   router.route('/NAnineties')
   .get(async (req, res) =>  {
@@ -142,6 +113,49 @@ router.route('/games')
   .get(async (req, res) =>  {
     try {
       const twoten = await db.sequelizeDB.query(naTwoTenTotal, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      res.json(twoten);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
+
+  const jpNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY jp_sales DESC;'
+  const jpTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY jp_sales DESC;'
+  const jpTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY jp_sales DESC;'
+
+  router.route('/JPnineties')
+  .get(async (req, res) =>  {
+    try {
+      const nineties = await db.sequelizeDB.query(jpNinetiesTotal, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      res.json(nineties);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
+
+  router.route('/JPtwothou')
+  .get(async (req, res) =>  {
+    try {
+      const twoThou = await db.sequelizeDB.query(jpTwothouTotal, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      res.json(twoThou);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  });
+
+  router.route('/JPtwoten')
+  .get(async (req, res) =>  {
+    try {
+      const twoten = await db.sequelizeDB.query(jpTwoTenTotal, {
         type: sequelize.QueryTypes.SELECT
       });
       res.json(twoten);

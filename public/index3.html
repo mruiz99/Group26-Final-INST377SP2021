@@ -2,43 +2,46 @@
 <html lang='en'>
     <head>
         <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Global Statistics </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Japanese Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script src="script3.js"></script>
     </head>
 
     <body>
-
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div>
+          <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
               <a class="navbar-item" href="index.html">
                 <img src="https://media3.giphy.com/media/Y4bZqjR8lluZwErVoU/source.gif" width="112" height="28">
               </a>
-          
               <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
               </a>
             </div>
-          
             <div id="navbarMenu" class="navbar-menu">
               <div class="navbar-start">
                 <a id = "northAmericanSales"class="navbar-item" href = "index2.html">
                   North American Sales
                 </a>
-                </div>
               </div>
-            </nav> 
-            
-        <h1>Japanese Statistics</h1>
-       
-
-
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        <script src="script.js"></script>
+            </div>
+          </nav> 
+        </div>
+        <h1 style='text-align: center; font-size: 60px; padding-top: 40px'>Japanese Sales</h1>
         
+        <div style='padding-top: 40px' class = "container">
+            <h2 style='text-align: center; font-size: 24px; padding-bottom: 40px;'>Top Genres per Decade</h2>
+            <table class ='table is-fullwidth  is-bordered' id = 'table'>
+
+            </table>
+        </div>
+
+        <img src="images/sales_fills.png" alt="bins" id='bins'>
 
     </body>
 </html>
