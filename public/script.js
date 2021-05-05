@@ -18,95 +18,41 @@ async function getGenre() {
   return data;
 }
 
-async function seriesChart() {
-  const eighties = await fetch('/api/eighties');
-  const eightiesData = await eighties.json();
-  const nineties = await fetch('/api/nineties');
-  const ninetiesData = await nineties.json();
-  const twothou = await fetch('/api/twothou');
-  const twothouData = await twothou.json();
-  const twoten = await fetch('/api/twoten');
-  const twotenData = await twoten.json();
-  
-  const info = [];
-  info.push(eightiesData);
-  info.push(ninetiesData);
-  info.push(twothouData);
-  info.push(twotenData);
+function imgfunc1() {
+  $('#NA').attr('src', 'images/slider/slider-img-1.jpg');
+  $('#JP').attr('src', 'images/slider/slider-img-2.jpg');
+}
 
-  console.log(info[2]);
-  const chart = new CanvasJS.Chart('chartContainer', {
-    animationEnabled: true,
-    title: {
-      text: 'Regional Sales By Genre'
-    },
-    axisX: {
-      valueFormatString: 'YYYY'
-    },
-    axisY: {
-      title: 'Sales (Millions)'
-    },
-    legend: {
-      cursor: 'pointer',
-      fontSize: 16,
-      itemclick: toggleDataSeries
-    },
-    toolTip: {
-      shared: true
-    },
-    data: [{
-      name: info[0][0]['genre_name'],
-      type: 'spline',
-      showInLegend: true,
-      dataPoints: [
-        { x: new Date(1980,1,1), y: info[0][0]['global_sales'] },
-        { x: new Date(1990,1,1), y: info[1][4]['global_sales'] },
-        { x: new Date(2000,1,1), y: info[2][5]['global_sales'] },
-        { x: new Date(2010,1,1), y: info[3][9]['global_sales'] }
-      ]
-    },
-    {
-      name: info[0][1]['genre_name'],
-      type: 'spline',
-      yValueFormatString: '#0.##',
-      showInLegend: true,
-      dataPoints: [
-        { x: new Date(1980,1,1), y: info[0][1]['global_sales'] },
-        { x: new Date(1990,1,1), y: info[1][5]['global_sales'] },
-        { x: new Date(2000,1,1), y: info[2][6]['global_sales'] },
-        { x: new Date(2010,1,1), y: info[3][10]['global_sales'] }
-      ]
-    },
-    {
-      name: info[0][2]['genre_name'],
-      type: 'spline',
-      yValueFormatString: '#0.##',
-      showInLegend: true,
-      dataPoints: [
-        { x: new Date(1980,1,1), y: info[0][2]['global_sales'] },
-        { x: new Date(1990,1,1), y: info[1][8]['global_sales'] },
-        { x: new Date(2000,1,1), y: info[2][9]['global_sales'] },
-        { x: new Date(2010,1,1), y: info[3][13]['global_sales'] }
-      ]
-    }]
+function imgfunc2() {
+  $('#NA').attr('src', 'images/slider/slider-img-2.jpg');
+  $('#JP').attr('src', 'images/slider/slider-img-3.jpg');
+}
+
+function imgfunc3() {
+  $('#NA').attr('src', 'images/slider/slider-img-3.jpg');
+  $('#JP').attr('src', 'images/slider/slider-img-1.jpg');
+}
+
+async function nivoSlider() {
+  $('#slider').nivoSlider({
+    effect:'random', 
+    slices:15,  
+    animSpeed:500, 
+    pauseTime:5000
   });
-  chart.render();
+}
 
-  function toggleDataSeries(e) {
-    if (typeof (e.dataSeries.visible) === 'undefined' || e.dataSeries.visible) {
-      e.dataSeries.visible = false;
-    } else {
-      e.dataSeries.visible = true;
-    }
-    chart.render();
-  }
+async function prettyPhoto() {
+  $("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal', theme:'dark_rounded', social_tools:false, slideshow:false, autoplay_slideshow: false});
+  $(".image a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal', theme:'dark_rounded', social_tools:false, slideshow:false, autoplay_slideshow: false});
 }
 
 async function windowOnload() {
-  //getGenre();
-  //getGames();
-  //getDecades();
-  seriesChart();
+  nivoSlider();
+  prettyPhoto();
+  imgfunc1();
+  imgfunc2();
+  imgfunc3();
 }
 
 window.onload = windowOnload;
