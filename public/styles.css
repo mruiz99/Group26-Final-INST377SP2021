@@ -300,21 +300,7 @@ h3{
 #contact-form input{
 	height:50px;
 }
-#contact-form textarea{
-	width:400px;
-	height:125px;
-	padding:15px;
-}
-#contact-form #name{
-	width:360px;
-	padding:0px 35px;
-	background:url(images/icon-name.png) no-repeat 15px 18px;
-}
-#contact-form #email{
-	width:360px;
-	padding:0px 35px;
-	background:url(images/icon-email.png) no-repeat 15px 18px;
-}
+
 #contact-form #submit{
 	
 	font-family: 'Oswald', sans-serif;
