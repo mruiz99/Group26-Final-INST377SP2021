@@ -176,6 +176,21 @@ h3{
     background:url(images/gallery-rollover.png);
 }
 
+.NAchartContainer {
+	height:300px;
+	width:450px;
+}
+
+.JPchartContainer {
+	height:300px;
+	width:450px;
+}
+
+.allchartContainer {
+	height:300px;
+	width:450px;
+}
+
 /**** Begin Client Gallery***/
 #clients{
 	margin:50px 0px 0px 25px;

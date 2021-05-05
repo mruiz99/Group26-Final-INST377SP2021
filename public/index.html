@@ -15,6 +15,7 @@
     <script type="text/javascript" src="nivo/jquery-1.6.1.min.js"></script>
     <script src="prettyphoto/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="nivo/jquery.nivo.slider.pack.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="script.js"></script>
     </head>
 
@@ -75,6 +76,7 @@
                         <nav>
                             <ul>
                                 <li><span><strong>Decades</strong></span></li>
+                                <li><button onclick="imgfuncall()" id="bar">All</button></li>
                                 <li><button onclick="imgfunc90s()" id="bar">1990's</button></li>
                                 <li><button onclick="imgfunc00s()" id="bar">2000's</button></li>
                                 <li><button onclick="imgfunc10s()" id="bar">2010's</button></li>
@@ -88,12 +90,15 @@
                 <div id="sub-container">
                     <div id="about">
                         <div id="title-sub-divider" class = "na-sales-divider"><h3>NA Sales</h3></div>
-                            <img src="images/slider/slider-img-l.png" alt="" title="#htmlcaption" id="NA"/>                        
+                        <div id="NAchartContainer" class="NAchartContainer"></div>
+                        <div id="allchartContainer" class="allchartContainer"></div>
                     </div>
+
                     <div id="contact">
                         <div id="title-sub-divider"><h3>JP Sales</h3></div>
-                        <img src="images/slider/slider-img-r.png" alt="" title="#htmlcaption" id="JP"/>   
+                        <div id="JPchartContainer" class="JPchartContainer"></div>  
                     </div>
+                    
                 </div>
                 <div><br/></div>
                 

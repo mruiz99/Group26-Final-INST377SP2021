@@ -11,12 +11,15 @@ router.get('/', (req, res) => {
 /// /////////////////////////////////
 /// ////Games Endpoints////////
 /// /////////////////////////////////
+
+const allgames = "SELECT * FROM games ga JOIN genre g on ga.genre_id = g.genre_id;"
 router.route('/games')
   .get(async (req, res) =>  {
     try {
-      const games = await db.games.findAll();
-      const reply = games.length > 0 ? { data: games } : { message: 'no results found' };
-      res.json(reply);
+      const games = await db.sequelizeDB.query(allgames, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      res.json(games);
     } catch (err) {
       console.error(err);
       res.error('Server error');

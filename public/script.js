@@ -18,19 +18,268 @@ async function getGenre() {
   return data;
 }
 
+async function NAChart90s() {
+
+  const na90sData = await fetch('/api/NAnineties');
+  const na90sjson = await na90sData.json();
+  const data=[];
+  data.push(na90sjson);
+  console.log(data);
+
+  const chart = new CanvasJS.Chart("NAchartContainer", {
+    animationEnabled: true,
+
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      //axisYType: "secondary",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['na_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['na_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['na_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
+}
+
+async function JPChart90s() {
+  
+  
+  const jp90sData = await fetch('/api/JPnineties');
+  const jp90sjson = await jp90sData.json();
+  const data=[];
+  data.push(jp90sjson);
+  console.log(data);
+
+  const chart = new CanvasJS.Chart("JPchartContainer", {
+    animationEnabled: true,
+    
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['jp_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['jp_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['jp_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
+}
+
 function imgfunc90s() {
-  $('#NA').attr('src', 'images/slider/slider-img-1.jpg');
-  $('#JP').attr('src', 'images/slider/slider-img-2.jpg');
+  NAChart90s();
+  JPChart90s();
+}
+
+async function NAChart00s() {
+
+  const na00sData = await fetch('/api/NAtwothou');
+  const na00sjson = await na00sData.json();
+  const data=[];
+  data.push(na00sjson);
+  console.log(data);
+
+  const chart = new CanvasJS.Chart("NAchartContainer", {
+    animationEnabled: true,
+
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      //axisYType: "secondary",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['na_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['na_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['na_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
+}
+
+async function JPChart00s() {
+  
+  
+  const jp00sData = await fetch('/api/JPtwothou');
+  const jp00sjson = await jp00sData.json();
+  const data=[];
+  data.push(jp00sjson);
+  console.log(data);
+
+  const chart = new CanvasJS.Chart("JPchartContainer", {
+    animationEnabled: true,
+    
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['jp_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['jp_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['jp_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
 }
 
 function imgfunc00s() {
-  $('#NA').attr('src', 'images/slider/slider-img-2.jpg');
-  $('#JP').attr('src', 'images/slider/slider-img-3.jpg');
+  NAChart00s();
+  JPChart00s();
+}
+
+async function NAChart10s() {
+
+  const na10sData = await fetch('/api/NAtwoten');
+  const na10sjson = await na10sData.json();
+  const data=[];
+  data.push(na10sjson);
+  console.log(data);
+
+  const chart = new CanvasJS.Chart("NAchartContainer", {
+    animationEnabled: true,
+
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      //axisYType: "secondary",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['na_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['na_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['na_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
+}
+
+async function JPChart10s() {
+  
+  
+  const jp10sData = await fetch('/api/JPtwoten');
+  const jp10sjson = await jp10sData.json();
+  const data=[];
+  data.push(jp10sjson);
+  console.log(data);
+
+  const chart = new CanvasJS.Chart("JPchartContainer", {
+    animationEnabled: true,
+    
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['jp_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['jp_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['jp_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
 }
 
 function imgfunc10s() {
-  $('#NA').attr('src', 'images/slider/slider-img-3.jpg');
-  $('#JP').attr('src', 'images/slider/slider-img-1.jpg');
+  NAChart10s();
+  JPChart10s();
+}
+
+function orderArray(data) {
+
+  const distinct = (value,index,self) => {
+    return self.indexOf(value) == index;
+  }
+
+  data.filter(distinct);  
+  console.log(data);
+}
+
+async function allChart() {
+  
+  const allData = await fetch('/api/games');
+  const alljson = await allData.json();
+  const data=[];
+  data.push(alljson);
+  console.log(data);
+
+  
+
+  orderArray(data);
+
+  const chart = new CanvasJS.Chart("allchartContainer", {
+    animationEnabled: true,
+    
+    axisX:{
+      interval: 1,
+      title:  "Genres"
+    },
+    axisY:{
+      title: "Sales (Millions)"
+    },
+    data: [{
+      type: "bar",
+      name: "companies",
+      color: "#014D65",
+      dataPoints: [
+        { y: data[0][2]['jp_sales'], label: data[0][2]['genre_name'] },
+        { y: data[0][1]['jp_sales'], label: data[0][1]['genre_name'] },
+        { y: data[0][0]['jp_sales'], label: data[0][0]['genre_name'] },
+      ]
+    }]
+  });
+  chart.render();
+}
+
+
+function imgfuncall() {
+  allChart();
 }
 
 async function nivoSlider() {
@@ -50,9 +299,6 @@ async function prettyPhoto() {
 async function windowOnload() {
   nivoSlider();
   prettyPhoto();
-  imgfunc1();
-  imgfunc2();
-  imgfunc3();
 }
 
 window.onload = windowOnload;
