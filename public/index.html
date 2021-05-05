@@ -14,21 +14,6 @@
     <link rel="stylesheet" href="prettyphoto/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
     <script type="text/javascript" src="nivo/jquery-1.6.1.min.js"></script>
     <script src="prettyphoto/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-            //Set opacity on each span to 0%
-            $(".rollover").css({'opacity':'0'});
-            
-            $('#gallery a.item').hover(
-                function() {
-                    $(this).find('.rollover').stop().fadeTo(500, 1);
-                },
-                function() {
-                    $(this).find('.rollover').stop().fadeTo(500, 0);
-                }
-            )
-            });
-        </script>
     </head>
 
     <body>
@@ -149,11 +134,18 @@
                 <div id="contact">
                 <div id="title-sub-divider"><h3>Record Manipulation</h3></div>
                   <form id="contact-form">
-                        <input type="text" name="name" id="name" value="Your Name" />
-                        <input type="text" name="email" id="email" value="Your Email Address" />
-                        <textarea id="comment"></textarea>
+                        <input type="text" name="new_record" id="new_record" value="New Record" />
                         <input type="submit" value="submit" id="submit" />
                     </form>
+                  <form id = "contact-form">
+                        <input type="text" name="update_record" id="update_record" value="Update Record" />
+                        <input type="submit" value="submit" id="submit"/>
+                  </form>
+                  <form id = "contact-form">
+                      <input type="text" name="delete_record" id="delete_record" value="Delete Record" />
+                      <input type="submit" value="submit" id="submit"/>
+                  </form>
+
                 </div>      
                 </div>
         </div>
