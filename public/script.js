@@ -18,17 +18,17 @@ async function getGenre() {
   return data;
 }
 
-function imgfunc1() {
+function imgfunc90s() {
   $('#NA').attr('src', 'images/slider/slider-img-1.jpg');
   $('#JP').attr('src', 'images/slider/slider-img-2.jpg');
 }
 
-function imgfunc2() {
+function imgfunc00s() {
   $('#NA').attr('src', 'images/slider/slider-img-2.jpg');
   $('#JP').attr('src', 'images/slider/slider-img-3.jpg');
 }
 
-function imgfunc3() {
+function imgfunc10s() {
   $('#NA').attr('src', 'images/slider/slider-img-3.jpg');
   $('#JP').attr('src', 'images/slider/slider-img-1.jpg');
 }
