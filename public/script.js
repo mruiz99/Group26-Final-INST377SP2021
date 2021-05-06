@@ -231,14 +231,24 @@ function imgfunc10s() {
   JPChart10s();
 }
 
-function orderArray(data) {
+function naSalestotal(data) {
 
-  const distinct = (value,index,self) => {
-    return self.indexOf(value) == index;
+  let na=0;
+  for (x=0; x< data.length+1; x++) {
+    na+=data[0][x]['na_sales'];
   }
 
-  data.filter(distinct);  
-  console.log(data);
+  return na;
+}
+
+function jpSalestotal(data) {
+
+  let jp=0;
+  for (x=0; x< data.length+1; x++) {
+    jp+=data[0][x]['jp_sales']
+  }
+
+  return jp;
 }
 
 async function allChart() {
@@ -247,30 +257,24 @@ async function allChart() {
   const alljson = await allData.json();
   const data=[];
   data.push(alljson);
-  console.log(data);
+ 
+  const na = naSalestotal(data);
+  const jp = jpSalestotal(data);
 
-  
-
-  orderArray(data);
-
-  const chart = new CanvasJS.Chart("allchartContainer", {
+  const chart = new CanvasJS.Chart("NAchartContainer", {
     animationEnabled: true,
-    
-    axisX:{
-      interval: 1,
-      title:  "Genres"
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    title:{
+      text: "Regional Market Size"
     },
-    axisY:{
-      title: "Sales (Millions)"
+    axisY: {
+      title: "Total Sales (Millions)"
     },
-    data: [{
-      type: "bar",
-      name: "companies",
-      color: "#014D65",
-      dataPoints: [
-        { y: data[0][2]['jp_sales'], label: data[0][2]['genre_name'] },
-        { y: data[0][1]['jp_sales'], label: data[0][1]['genre_name'] },
-        { y: data[0][0]['jp_sales'], label: data[0][0]['genre_name'] },
+    data: [{        
+      type: "column",  
+      dataPoints: [      
+        { y: na, label: "North America" },
+        { y: jp,  label: "Japan" },
       ]
     }]
   });
@@ -279,7 +283,9 @@ async function allChart() {
 
 
 function imgfuncall() {
+  $(".JPchartContainer").attr("src","images/gamecontroller.png");
   allChart();
+
 }
 
 async function nivoSlider() {
