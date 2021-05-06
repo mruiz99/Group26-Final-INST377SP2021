@@ -1,5 +1,3 @@
-import { request } from "express";
-
 async function getGames() {
   const requestGames = await fetch('/api/games');
   const gamesData = await requestGames.json();
@@ -305,15 +303,15 @@ async function prettyPhoto() {
 }
 
 async function formSub() {
-  const form = document.querySelector('.submit1');
-  form.addEventListener('click', (event) => {
-    const post = await fetch('/api/games',{
+  const buttons = document.querySelector('#submit1');
+  const form = document.querySelector('#new_record');
+  buttons.addEventListener('submit', async (event) => {
+    const post = await fetch('/api/games', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({data:search.value})
-  
+      body: JSON.stringify({form:search.value})
 
     });
 
@@ -324,6 +322,7 @@ async function formSub() {
 async function windowOnload() {
   nivoSlider();
   prettyPhoto();
+  formSub();
 
 }
 
