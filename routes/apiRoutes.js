@@ -37,6 +37,28 @@ router.route('/games')
       console.error(err);
       res.error('Server error');
     }
+  })
+  .post(async (req, res) => {
+    const games = await db.games.findAll();
+    const currentId = (await games.length)+1;
+    try {
+      const newGame = await db.games.create({
+        game_id: currentId,
+        publisher_id: req.body.publisher_id,
+        game_name: req.body.game_name,
+        date_published: req.body.date_published,
+        genre_id: req.body.genre_id,
+        na_sales: req.body.na_sales,
+        jp_sales: req.body.jp_sales,
+        global_sales: req.body.global_sales,
+        developer_team_id: req.body.developer_team_id,
+        genre_name: req.body.genre_name
+      });
+      res.json(newGame);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
   });
 
   const ninetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY genre_name;'

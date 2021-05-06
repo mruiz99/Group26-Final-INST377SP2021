@@ -1,3 +1,5 @@
+import { request } from "express";
+
 async function getGames() {
   const requestGames = await fetch('/api/games');
   const gamesData = await requestGames.json();
@@ -302,9 +304,27 @@ async function prettyPhoto() {
   $(".image a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'normal', theme:'dark_rounded', social_tools:false, slideshow:false, autoplay_slideshow: false});
 }
 
+async function formSub() {
+  const form = document.querySelector('.submit1');
+  form.addEventListener('click', (event) => {
+    const post = await fetch('/api/games',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({data:search.value})
+  
+
+    });
+
+    const data = await request.json();
+  });
+}
+
 async function windowOnload() {
   nivoSlider();
   prettyPhoto();
+
 }
 
 window.onload = windowOnload;
