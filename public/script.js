@@ -306,15 +306,15 @@ async function formSub() {
   const buttons = document.querySelector('#submit1');
   const form = document.querySelector('#new_record');
   buttons.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    console.info('submitted form', event.target);
     const post = await fetch('/api/games', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({form:search.value})
-
     });
-
     const data = await request.json();
   });
 }

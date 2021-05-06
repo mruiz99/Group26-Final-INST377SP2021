@@ -61,49 +61,6 @@ router.route('/games')
     }
   });
 
-  const ninetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY genre_name;'
-  const twothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY genre_name;'
-  const twoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(global_sales),2) AS global_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY genre_name;'
-  
-  router.route('/nineties')
-  .get(async (req, res) =>  {
-    try {
-      const nineties = await db.sequelizeDB.query(ninetiesTotal, {
-        type: sequelize.QueryTypes.SELECT
-      });
-      res.json(nineties);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
-
-  router.route('/twothou')
-  .get(async (req, res) =>  {
-    try {
-      const twoThou = await db.sequelizeDB.query(twothouTotal, {
-        type: sequelize.QueryTypes.SELECT
-      });
-      res.json(twoThou);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
-
-  router.route('/twoten')
-  .get(async (req, res) =>  {
-    try {
-      const twoten = await db.sequelizeDB.query(twoTenTotal, {
-        type: sequelize.QueryTypes.SELECT
-      });
-      res.json(twoten);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
-
   const naNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY na_sales DESC;'
   const naTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY na_sales DESC;'
   const naTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY na_sales DESC;'
@@ -223,38 +180,6 @@ router.route('/genres/:genre_id')
     }
   });
 
-/// /////////////////////////////////
-/// ////Platform Endpoints////////
-/// /////////////////////////////////
-router.route('/platform')
-  .get(async (req, res) =>  {
-    try {
-      const platform = await db.platform.findAll();
-      const reply = platform.length > 0 ? { data: platform } : { message: 'no results found' };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  }) 
-  .post(async (req, res) => {
-    const platform = await db.platform.findAll();
-    const currentId = (await platform.length)+1;
-    try {
-      const newPlatform = await db.platform.create({
-        platform_id: currentId,
-        platform_name: req.body.platform_name
-      });
-      res.json(newPlatform);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-});
-
-/// /////////////////////////////////
-/// ////Developer Endpoints////////
-/// /////////////////////////////////
 router.route('/developers')
   .get(async (req, res) =>  {
     try {
@@ -284,20 +209,5 @@ router.route('/developers')
       res.error('Server error');
     }
 });
-
-/// /////////////////////////////////
-/// ////Publisher Endpoints////////
-/// /////////////////////////////////
-router.route('/publishers')
-  .get(async (req, res) =>  {
-    try {
-      const publisher = await db.publishers.findAll();
-      const reply = publisher.length > 0 ? { data: publisher } : { message: 'no results found' };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
 
 export default router;

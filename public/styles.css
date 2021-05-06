@@ -57,7 +57,6 @@ h3{
 	background:url(images/divider.png) no-repeat 0px 3px;
 }
 
-/**** Begin Navigation Bar***/
 .navbar{
 	background-color: #272727;
 }
@@ -67,84 +66,19 @@ h3{
 	font-size:14px;
 }
 
-/**** Begin Header***/
-
 #header{
 	width:inherit;
 	margin-top:40px;
 	margin-bottom: 20px;
 	color:#1b1b1b;
 }
-#header-logo{
-	background:url(images/header-logo.png) no-repeat left top;
-	height:70px;
-	width:200px;
-	float:left;
-	margin-left:48px;
-}
-#header-logo h1{
-	text-indent:-9999px;
-}
-#header-tag{
-	float:left;
-	margin:15px 0px 0px 10px;
-	width:375px;
-}
-#header-tag h2{
-	font: italic 14px/20px Georgia, "Times New Roman", Times, serif;
-}
-#header-social{
-	float:right;
-	width:250px;
-	margin-right:30px;
-}
-#header-rss{
-	background:url(images/icon-rss.png) no-repeat 0px 3px;
-	font: italic 14px/20px Georgia, "Times New Roman", Times, serif;
-	font-size:12px;
-	padding: 0px 10px 10px 20px;
-	float:right;
-}
-#header-rss a{
-	text-decoration:none;
-	color:#535353;
-}
-#header-social ul {
-	clear:both;
-}
-#header-social ul li{
-	list-style:none;
-	list-style-image:none;
-	text-indent:-9999px;
-	float:right;
-	margin-right:6px;
-}
-#header-social ul li a{
-	display:block;
-	width:28px;
-	height:28px;
-}
-#header-social ul li a.stumble{
-	background:url(images/icon-stumble.png) no-repeat;
-}
-#header-social ul li a.float{
-	background:url(images/icon-float.png) no-repeat;
-}
-#header-social ul li a.facebook{
-	background:url(images/icon-facebook.png) no-repeat;
-}
-#header-social ul li a.flickr{
-	background:url(images/icon-flickr.png) no-repeat;
-}
-#header-social ul li a.twitter{
-	background:url(images/icon-twitter.png) no-repeat;
-}
-
 /**** Begin Portfolio Gallery***/
 
 #gallery{
 	margin:50px 0px 50px 25px;
 	overflow:auto;
+	width: 100%;
+	
 }
 #gallery #title-divider h3{
 	background-color:#FFF;
@@ -156,24 +90,6 @@ h3{
 	height:187px;
 	width:187px;
 	float:left;
-}
-#gallery a.item .gallery-shadow{
-	display:block;
-    position:absolute;
-    top:0%;
-    left:0%;
-    width:187px;
-	height:187px;
-    background:url(images/gallery-shadow.png);
-}
-#gallery a.item .rollover{
-	display:block;
-    position:absolute;
-    top:0%;
-    left:0%;
-    width:187px;
-	height:187px;
-    background:url(images/gallery-rollover.png);
 }
 
 .NAchartContainer {
@@ -232,7 +148,7 @@ h3{
  	margin-bottom: 10px;
 }
 
-/**** Begin About Me***/
+/**** Begin About the webpage***/
 #about{
 	width:440px;
 	float:left;
@@ -241,19 +157,9 @@ h3{
 	background-color:#FFF;
 	width:100px;
 }
-#about-col1{
-	width:140px;
-	float:left;
-}
+
 .aboutParagraph {
 	margin-top: 30px;
-}
-.nivo-html-caption {
-	align-content: center;
-}
-
-.navbar-brand img{
-	height: 100%;
 }
 .na-sales-divider {
 	width: 200px;
@@ -288,7 +194,6 @@ h3{
 	margin:0px 0px 20px 0px;
 }
 
-/**** Begin Contact Form***/
 #contact{
 	width:440px;
 	float:right;
