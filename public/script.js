@@ -346,7 +346,6 @@ async function windowOnload() {
 
   const form = document.querySelector('#contact-form3');
   const deleteRec = document.querySelector('#delete_record');
-  console.log(deleteRec);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -357,7 +356,6 @@ async function windowOnload() {
       },
       body: JSON.stringify({developer_name: deleteRec.value}),
     }); 
-    console.log(deleteName);
   });
 
 
