@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 /// /////////////////////////////////
 /// ////Games Endpoints////////
 /// /////////////////////////////////
-
 const allgames = "SELECT * FROM games ga JOIN genre g on ga.genre_id = g.genre_id;"
 router.route('/games')
   .get(async (req, res) =>  {
@@ -24,48 +23,13 @@ router.route('/games')
       console.error(err);
       res.error('Server error');
     }
-  }) 
-  .delete(async (req, res) => {
-    try {
-      await db.games.destroy({
-        where: {
-          game_name: req.params.game_name
-        }
-      });
-      res.send('Successfully Deleted');
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  })
-  .post(async (req, res) => {
-    const games = await db.games.findAll();
-    const currentId = (await games.length)+1;
-    try {
-      const newGame = await db.games.create({
-        game_id: currentId,
-        publisher_id: req.body.publisher_id,
-        game_name: req.body.game_name,
-        date_published: req.body.date_published,
-        genre_id: req.body.genre_id,
-        na_sales: req.body.na_sales,
-        jp_sales: req.body.jp_sales,
-        global_sales: req.body.global_sales,
-        developer_team_id: req.body.developer_team_id,
-        genre_name: req.body.genre_name
-      });
-      res.json(newGame);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
+  }); 
+  
+const naNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY na_sales DESC;'
+const naTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY na_sales DESC;'
+const naTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY na_sales DESC;'
 
-  const naNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY na_sales DESC;'
-  const naTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY na_sales DESC;'
-  const naTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(na_sales),2) AS na_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY na_sales DESC;'
-
-  router.route('/NAnineties')
+router.route('/NAnineties')
   .get(async (req, res) =>  {
     try {
       const nineties = await db.sequelizeDB.query(naNinetiesTotal, {
@@ -78,7 +42,7 @@ router.route('/games')
     }
   });
 
-  router.route('/NAtwothou')
+router.route('/NAtwothou')
   .get(async (req, res) =>  {
     try {
       const twoThou = await db.sequelizeDB.query(naTwothouTotal, {
@@ -91,7 +55,7 @@ router.route('/games')
     }
   });
 
-  router.route('/NAtwoten')
+router.route('/NAtwoten')
   .get(async (req, res) =>  {
     try {
       const twoten = await db.sequelizeDB.query(naTwoTenTotal, {
@@ -104,11 +68,11 @@ router.route('/games')
     }
   });
 
-  const jpNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY jp_sales DESC;'
-  const jpTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY jp_sales DESC;'
-  const jpTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY jp_sales DESC;'
+const jpNinetiesTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 1990 AND date_published < 2000 GROUP BY genre_name ORDER BY jp_sales DESC;'
+const jpTwothouTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2000 AND date_published < 2010 GROUP BY genre_name ORDER BY jp_sales DESC;'
+const jpTwoTenTotal = 'SELECT date_published, ga.genre_id, ROUND(AVG(jp_sales),2) AS jp_sales, genre_name FROM games ga JOIN genre g ON ga.genre_id = g.genre_id WHERE date_published >= 2010 AND date_published < 2020 GROUP BY genre_name ORDER BY jp_sales DESC;'
 
-  router.route('/JPnineties')
+router.route('/JPnineties')
   .get(async (req, res) =>  {
     try {
       const nineties = await db.sequelizeDB.query(jpNinetiesTotal, {
@@ -121,7 +85,7 @@ router.route('/games')
     }
   });
 
-  router.route('/JPtwothou')
+router.route('/JPtwothou')
   .get(async (req, res) =>  {
     try {
       const twoThou = await db.sequelizeDB.query(jpTwothouTotal, {
@@ -134,7 +98,7 @@ router.route('/games')
     }
   });
 
-  router.route('/JPtwoten')
+router.route('/JPtwoten')
   .get(async (req, res) =>  {
     try {
       const twoten = await db.sequelizeDB.query(jpTwoTenTotal, {
@@ -148,35 +112,6 @@ router.route('/games')
   });
 
 /// /////////////////////////////////
-/// ////Genres Endpoints////////
-/// /////////////////////////////////
-router.route('/genres')
-  .get(async (req, res) =>  {
-    try {
-      const genre = await db.genres.findAll();
-      const reply = genre.length > 0 ? { data: genre } : { message: 'no results found' };
-      res.json(reply);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  })
-  .post(async (req, res) => {
-    const genres = await db.genres.findAll();
-    const currentId = (await genres.length)+1;
-    try {
-      const newDev = await db.genres.create({
-        genre_id: currentId,
-        genre_name: req.body.genre_name,
-      });
-      res.json(newDev);
-    } catch (err) {
-      console.error(err);
-      res.error('Server error');
-    }
-  });
-
-  /// /////////////////////////////////
 /// ////Developer ID Endpoint////////
 /// /////////////////////////////////
 router.route('/developers/:developers_id')
@@ -222,34 +157,32 @@ router.route('/developers')
       console.error(err);
       res.error('Server error');
     }
-})
-.post(async (req, res) => {
-  const developers = await db.developers.findAll();
-  const currentId = (await developers.length)+1;
-  try {
-    const newDev = await db.developers.create({
-      developer_team_id: currentId,
-      developer_name: req.body.developer_name,
-    });
-    res.json(newDev);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-})
-.delete(async (req, res) => {
-  try {
-    await db.developers.destroy({
-      where: {
-        developer_name: req.params.developer_name
-      }
-    });
-    res.send('Successfully Deleted');
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-})
-
-
+  })
+  .post(async (req, res) => {
+    const developers = await db.developers.findAll();
+    const currentId = (await developers.length)+1;
+    try {
+      const newDev = await db.developers.create({
+        developer_team_id: currentId,
+        developer_name: req.body.developer_name,
+      });
+      res.json(newDev);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  })
+  .delete(async (req, res) => {
+    try {
+      await db.developers.destroy({
+        where: {
+          developer_name: req.params.developer_name
+        }
+      });
+      res.send('Successfully Deleted');
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
+  })
 export default router;

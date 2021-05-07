@@ -9,15 +9,6 @@ async function getGames() {
   return gamesData;
 }
 
-async function getGenre() {
-  const requestGenres = await fetch('/api/genres');
-  const genresData = await requestGenres.json();
-  const data = [];
-  data.push(genresData);
-  console.log(data[0]['data']);
-  return data;
-}
-
 async function NAChart90s() {
 
   const na90sData = await fetch('/api/NAnineties');
@@ -110,7 +101,6 @@ async function NAChart00s() {
     data: [{
       type: "bar",
       name: "companies",
-      //axisYType: "secondary",
       color: "#014D65",
       dataPoints: [
         { y: data[0][2]['na_sales'], label: data[0][2]['genre_name'] },
@@ -123,8 +113,6 @@ async function NAChart00s() {
 }
 
 async function JPChart00s() {
-  
-  
   const jp00sData = await fetch('/api/JPtwothou');
   const jp00sjson = await jp00sData.json();
   const data=[];
@@ -161,7 +149,6 @@ function imgfunc00s() {
 }
 
 async function NAChart10s() {
-
   const na10sData = await fetch('/api/NAtwoten');
   const na10sjson = await na10sData.json();
   const data=[];
@@ -194,8 +181,6 @@ async function NAChart10s() {
 }
 
 async function JPChart10s() {
-  
-  
   const jp10sData = await fetch('/api/JPtwoten');
   const jp10sjson = await jp10sData.json();
   const data=[];
@@ -204,7 +189,6 @@ async function JPChart10s() {
 
   const chart = new CanvasJS.Chart("JPchartContainer", {
     animationEnabled: true,
-    
     axisX:{
       interval: 1,
       title:  "Genres"
@@ -232,27 +216,22 @@ function imgfunc10s() {
 }
 
 function naSalestotal(data) {
-
   let na=0;
   for (x=0; x< data.length+1; x++) {
     na+=data[0][x]['na_sales'];
   }
-
   return na;
 }
 
 function jpSalestotal(data) {
-
   let jp=0;
   for (x=0; x< data.length+1; x++) {
     jp+=data[0][x]['jp_sales']
   }
-
   return jp;
 }
 
 async function allChart() {
-  
   const allData = await fetch('/api/games');
   const alljson = await allData.json();
   const data=[];
@@ -281,11 +260,9 @@ async function allChart() {
   chart.render();
 }
 
-
 function imgfuncall() {
   $(".JPchartContainer").attr("src","images/gamecontroller.png");
   allChart();
-
 }
 
 async function nivoSlider() {
