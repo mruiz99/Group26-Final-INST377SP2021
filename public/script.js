@@ -260,9 +260,16 @@ async function allChart() {
   chart.render();
 }
 
+function gamePic() {
+  const pic = "<img src='/images/gamecontroller.png' alt='A game controller'>"
+  const jpchart = document.querySelector('#JPchartContainer')
+  jpchart.innerHTML = pic;
+}
+
 function imgfuncall() {
-  $(".JPchartContainer").attr("src","images/gamecontroller.png");
+  //$("#JPchartContainer").attr("src","..images/gamecontroller.png");
   allChart();
+  gamePic();
 }
 
 async function nivoSlider() {
@@ -338,8 +345,8 @@ async function windowOnload() {
   formSub();
   upDate();
   delData();
-
-
+  allChart();
+  gamePic();
 }
 
 window.onload = windowOnload;

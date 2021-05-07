@@ -248,14 +248,11 @@ h3{
 	-moz-box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
 	box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.1); 
 }
-#contact-form input{
-	height:50px;
-}
 
 #footer{
 	clear:both;
 	width:100%;
-	height:100px;
+	height:65px;
 	background:#272727 url(images/footer-bg.jpg) repeat-x;
 }
 
