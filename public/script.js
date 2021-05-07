@@ -303,35 +303,12 @@ async function prettyPhoto() {
 }
 
 async function formSub() {
-  const buttons = document.querySelector('#submit1');
-  const form = document.querySelector('#new_record');
-  buttons.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    console.info('submitted form', event.target);
-    const post = await fetch('/api/games', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({form:search.value})
-    });
-    const data = await request.json();
-  });
-}
-
-async function windowOnload() {
-  nivoSlider();
-  prettyPhoto();
-  //formSub();
-
   const form = document.querySelector('#contact-form')
   const newRec = document.querySelector('#new_record')
-  const deleteRec = document.querySelector('#delete_record')
+  //const deleteRec = document.querySelector('#delete_record')
   
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.info('submitted form',e.target);
-    //const formData = ();
     const post = await fetch('/api/developers', {
       method: 'POST',
       headers: {
@@ -340,6 +317,49 @@ async function windowOnload() {
       body: JSON.stringify({developer_name: newRec.value})
     }); 
   });
+
+}
+
+function notworking() {
+  const form = document.querySelector('#contact-form2')
+  const updateRec = document.querySelector('#record_tobe_updated')
+  const newRec = document.querySelector('#update_record')
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const post = await fetch('/api/developers', {
+      method: 'PUT',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({developer_name: newRec.value}),
+      
+    });
+     
+  });
+}
+
+async function windowOnload() {
+  nivoSlider();
+  prettyPhoto();
+  //formSub();
+
+  const form = document.querySelector('#contact-form3');
+  const deleteRec = document.querySelector('#delete_record');
+  console.log(deleteRec);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const deleteName = await fetch('/api/developers', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({developer_name: deleteRec.value}),
+    }); 
+    console.log(deleteName);
+  });
+
 
 }
 

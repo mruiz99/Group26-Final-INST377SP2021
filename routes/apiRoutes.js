@@ -177,17 +177,17 @@ router.route('/genres')
   });
 
   /// /////////////////////////////////
-/// ////Genre ID Endpoint////////
+/// ////Developer ID Endpoint////////
 /// /////////////////////////////////
-router.route('/genres/:genre_id')
+router.route('/developers/:developers_id')
   .get(async (req, res) =>  {
     try {
-      const genres = await db.genres.findAll({
+      const devID = await db.developers.findAll({
         where: {
-          genre_id: req.params.genre_id  // to test, add = 1
+          developer_team_id: req.params.developer_team_id  // to test, add = 1
         }
       });
-      res.json(genres);
+      res.json(devID);
     } catch (err) {
       console.error(err);
       res.error('Server error');
@@ -236,7 +236,20 @@ router.route('/developers')
     console.error(err);
     res.error('Server error');
   }
-});
+})
+.delete(async (req, res) => {
+  try {
+    await db.developers.destroy({
+      where: {
+        developer_name: req.params.developer_name
+      }
+    });
+    res.send('Successfully Deleted');
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
+})
 
 
 export default router;
