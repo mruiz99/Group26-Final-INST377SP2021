@@ -320,7 +320,7 @@ async function formSub() {
 
 }
 
-function notworking() {
+async function upDate() {
   const form = document.querySelector('#contact-form2')
   const updateRec = document.querySelector('#record_tobe_updated')
   const newRec = document.querySelector('#update_record')
@@ -332,31 +332,35 @@ function notworking() {
       headers: {
         'Content-Type':'application/json'
       },
-      body: JSON.stringify({developer_name: newRec.value}),
+      body: JSON.stringify({developer_name: newRec.value, developer_team_id: updateRec.value}),
       
     });
      
   });
 }
 
-async function windowOnload() {
-  nivoSlider();
-  prettyPhoto();
-  //formSub();
-
+async function delData() {
   const form = document.querySelector('#contact-form3');
-  const deleteRec = document.querySelector('#delete_record');
+  const deleteName = document.querySelector('#delete_record');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const deleteName = await fetch('/api/developers', {
+    const delName = await fetch('/api/developers', {
       method: 'DELETE',
       headers: {
         'Content-Type':'application/json'
       },
-      body: JSON.stringify({developer_name: deleteRec.value}),
-    }); 
+      body: JSON.stringify({developer_name: deleteName.value}),
+    });
   });
+}
+
+async function windowOnload() {
+  nivoSlider();
+  prettyPhoto();
+  formSub();
+  upDate();
+  delData();
 
 
 }

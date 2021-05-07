@@ -217,7 +217,7 @@ router.route('/developers')
           }
         }
       );
-      res.send('Successfully Updated');
+      res.send('Sucessfully updated');
     } catch (err) {
       console.error(err);
       res.error('Server error');
@@ -241,7 +241,7 @@ router.route('/developers')
   try {
     await db.developers.destroy({
       where: {
-        developer_name: req.params.developer_name
+        developer_name: req.body.developer_name
       }
     });
     res.send('Successfully Deleted');
