@@ -13,7 +13,7 @@ async function createNATable() {
   info.push(twotenData);
   console.log(info);
 
-  let colorCell = (salesAmt) => {
+  const colorCell = (salesAmt) => {
     if (salesAmt < 0.2) {
       return '#ccedbe'
     } else if (salesAmt >= 0.2 & salesAmt < 0.4) {
@@ -63,8 +63,6 @@ async function createNATable() {
   naTable.innerHTML = columns;
 }
 
-
-  
 async function windowOnload() {
   createNATable();
 }
