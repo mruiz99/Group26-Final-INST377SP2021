@@ -9,24 +9,24 @@ export default (sequelize, DataTypes) => {
       },
       game_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       date_published: {
         type: DataTypes.STRING, // change to INTEGER if possible
-        allowNull: false
+        allowNull: true
       },
       genre_id: {
         type: DataTypes.INTEGER, // FK
-        allowNull: false,
+        allowNull: true,
         FOREIGNKEYS: true
       },
       na_sales: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: true
       },
       jp_sales: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: true
       }
     },
     { freezeTableName: true, timestamps: false }

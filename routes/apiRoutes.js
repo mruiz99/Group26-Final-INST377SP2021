@@ -160,6 +160,20 @@ router.route('/genres')
       console.error(err);
       res.error('Server error');
     }
+  })
+  .post(async (req, res) => {
+    const genres = await db.genres.findAll();
+    const currentId = (await genres.length)+1;
+    try {
+      const newDev = await db.genres.create({
+        genre_id: currentId,
+        genre_name: req.body.genre_name,
+      });
+      res.json(newDev);
+    } catch (err) {
+      console.error(err);
+      res.error('Server error');
+    }
   });
 
   /// /////////////////////////////////
@@ -208,6 +222,21 @@ router.route('/developers')
       console.error(err);
       res.error('Server error');
     }
+})
+.post(async (req, res) => {
+  const developers = await db.developers.findAll();
+  const currentId = (await developers.length)+1;
+  try {
+    const newDev = await db.developers.create({
+      developer_team_id: currentId,
+      developer_name: req.body.developer_name,
+    });
+    res.json(newDev);
+  } catch (err) {
+    console.error(err);
+    res.error('Server error');
+  }
 });
+
 
 export default router;

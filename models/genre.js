@@ -9,7 +9,7 @@ export default (database, DataTypes) => {
       },
       genre_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       }
     },
     { freezeTableName: true, timestamps: false }

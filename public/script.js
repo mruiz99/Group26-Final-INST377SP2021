@@ -322,7 +322,24 @@ async function formSub() {
 async function windowOnload() {
   nivoSlider();
   prettyPhoto();
-  formSub();
+  //formSub();
+
+  const form = document.querySelector('#contact-form')
+  const newRec = document.querySelector('#new_record')
+  const deleteRec = document.querySelector('#delete_record')
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.info('submitted form',e.target);
+    //const formData = ();
+    const post = await fetch('/api/developers', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({developer_name: newRec.value})
+    }); 
+  });
 
 }
 
